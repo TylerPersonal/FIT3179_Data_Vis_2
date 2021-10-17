@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Number Of Fires Per State Normalised By Area",
+  "width": 500,
+  "height": 430,
+  "config": {
+    "background":"aliceblue",
+    "projection": {"type": "equirectangular"},
+    "title": {"fontSize":24, "align": "center", "font":"Oswald", "color":"black"},
+    "legend": {"labelFont": "Oswald", "titleFont": "Oswald"},
+    "view": {"stroke":"transparent"}
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TylerPersonal/Vis2_data/main/aus_states_map.json",
+    "format": {
+          "type": "topojson",
+          "feature": "aus_state"
+        }
+  },
+  "transform": [{
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/TylerPersonal/Vis2_data/main/count_fires_by_state.csv"
+        },
+        "key": "state",
+        "fields": ["fires","area"]
+      }
+    },
+    {"calculate": "datum.fires/datum.area", "as": "Fires per 100,000 km^2"},
+    {"calculate": "datum.area*100000", "as": "Area (km^2)"}
+  ],
+  "mark": {
+    "type": "geoshape"
+    },
+  "encoding": {
+    "color": {
+      "scale":{"domain": [10, 80, 140, 180],
+          "range": ["#fc9272","#ef3b2c", "#cb181d", "#a50f15", "#67000d"]},
+      "field": "Fires per 100,000 km^2",
+      "type": "quantitative",
+      "legend":{"legendX":385, "legendY":0,"titleFontSize":15, "orient":"none","padding":0, "titleAlign":"right"}
+    },
+    "tooltip": [
+      {"field": "properties.STATE_NAME", "type": "nominal", "title": "State"},
+      {"field": "fires", "type": "quantitative", "title":"Total Fires"},
+      {"field": "Area (km^2)", "type": "quantitative"}
+    ]
+  }  
+}

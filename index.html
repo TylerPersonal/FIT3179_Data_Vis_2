@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fires in Australia | By Tyler Arnold</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
+</head>
+<body>
+
+ <div class="page">
+
+   <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-9">
+        <h1></h1>
+      </div>
+      <div class="pure-u-1-1">
+        <h1>Fires In A Land Down Under Visualised</h1>
+        <p style="font-weight: bold; color: rgb(77, 77, 77); text-align: left;">This page shows data captured from satellite imagery of fires in Australia from 2000 to 2019</p>
+      </div>
+    </div>
+  <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="vis1" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+          <div class="description description-left">
+            <h2>A Landscape Shaped By Fire</h2>
+            <p>The map on the left gives an illustration of all of the fire data that has been collected from NASA's satellite imagery over Australia.
+              <br><br>
+              The darker the shade of red determines the surface temperature of the particular fire as estimated by the brightness of the pixels of the fire in the imagery.
+              <br><br>
+              More information about specific fires including the state, the date of the fire, the calculated surface temperature in degrees celcius and its general coordinates can be examined by generating a tooltip when hovering over a red dot.
+              <br><br>
+              Also find below the map a line chart over the period of time that the fires were recorded with a monthly count of fires to give a quick indication of what time periods had the most fires.
+              <br><br>
+              This line chart can be used to filter the data on the dot map by clicking and dragging from start date to end date to only get fires that occurred in that time period.
+              <br><br>
+              Another filter right below that can be used to filter out fires by their calculated surface temperatures to remove some of the noisyness in the data and only show the hottest fires.
+            </p>
+          </div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+          <div class="description description-right">
+            <h2 style="font-size: 18;">Where Is Most Common?</h2>
+            <p>The map on the right gives a simple way of visualising wich state has the most fires.
+              <br><br>
+              This choropleth map is normalised by the area of the state, so the states with the darkest red shadings have had the most fires per 100,000 square kilometres from 2000-2019.
+              <br><br>
+              Queensland is the clear leader in fires normalised by area. But for total fires and the actual area of the state, hovering over the desired state will generate a tooltip for this information.
+              <br><br>
+              For a more in depth look into which states have had the most fires over time the below area chart and heat map can be insightful to key points in time for all of the states.
+              <br><br>
+              Clicking on the name of the state in the legend will highlight the relavent state's data in both  adjacent visualisations. 
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="vis2"  class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    <div>
+      <div>
+        <h2 style="font-size: 18; text-align: center; margin-bottom: 0px;">Fires In Each State Over Time</h2>
+      </div>
+    </div>
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis3"  class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+  
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation was created by <a href="https://github.com/TylerPersonal" target="_blank">Tyler Arnold</a>. The datasource used is from <a href="https://www.kaggle.com/gabrielbgutierrez/satellite-data-on-australia-fires" target="_blank">Gabriel Gutierrez on Kaggle</href>.</p>
+      </div>
+    </div>
+  
+
+  </div> <!-- end page -->
+   
+<script type="text/javascript">
+  var dotMap = "./fire_dotmap.vg.json";
+  var choroMap = "./fire_choroplethmap.vg.json";
+  var areaChart = "./area_chart.vg.json";
+
+  vegaEmbed('#vis1', dotMap, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis2', choroMap, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis3', areaChart, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+</body>
+</html>

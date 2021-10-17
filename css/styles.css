@@ -1,0 +1,52 @@
+    h1{
+      font-family: 'Oswald', sans-serif;
+      font-weight: bolder;
+      font-size: xx-large;
+      text-align: left;
+    }
+    h2{
+      font-family: 'Oswald', sans-serif;
+      font-weight: bold;
+      font-size: 18;
+      text-align: center;
+    }
+     body{
+       background-color: aliceblue;
+     }
+     .page{
+       width: 850px;    
+       background-color: aliceblue;   
+       margin: auto;
+       padding: 50px;
+       padding-top: 35px;
+    }
+    p{
+      font-family: 'Oswald', sans-serif;
+      color: rgb(56, 56, 56);
+    }
+    .vis-container{
+      width: 100%;
+    }
+    .description h2, h1{
+      margin-top:0px;
+    }
+    .description-right {
+      padding-left: 20px;
+      text-align: justify;
+    }
+    .description-left{
+      padding-right: 20px;
+      text-align: justify;
+    }
+    .pure-g{
+      margin-bottom: 45px;
+    }
+    .small-font{
+        font-size: 14.5px;
+        text-indent: 3%;
+    }
+    .vega-bind{
+      font-family: 'Oswald', sans-serif;
+      text-indent: 25%;
+      font-weight: bold;
+    }
